@@ -14,12 +14,12 @@ exibirMensagemNaTela();
 
 function adicionarAmigo(){
     let campoNome = document.getElementById('amigo');
-    let nome = campoNome.value;
+    let nome = campoNome.value.trim();
     if (nome == ''){
         alert('Por favor, digite o nome de um amigo no campo indicado');
         return;
     }
-    if (amigos.includes(nome)){
+    if (amigos.map(amigo => amigo.toLowerCase()).includes(nome.toLowerCase())){
         alert('Este nome já foi adicionado.');
         campoNome.value = '';
         return;
