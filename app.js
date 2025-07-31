@@ -4,7 +4,9 @@ const DOM = {
     campoNome: document.getElementById('amigo'),
     listaAmigos: document.getElementById('listaAmigos'),
     resultado: document.getElementById('resultado'),
-    botaoReiniciar: document.getElementById('button-reiniciar')
+    botaoReiniciar: document.getElementById('botao-reiniciar'),
+    botaoAdicionar: document.getElementById('botao-adicionar'),
+    botaoSortear: document.getElementById('botao-sortear')
 };
 
 function exibirTextoNaTela(tag, texto) {
@@ -60,7 +62,7 @@ function sortearAmigo(){
     DOM.botaoReiniciar.disabled = false;
 }
 
-function reiniciar(){
+function reiniciarSorteio(){
     amigos = [];
     DOM.listaAmigos.innerHTML = '';
     DOM.resultado.textContent = '';
@@ -68,3 +70,7 @@ function reiniciar(){
     DOM.botaoReiniciar.disabled = true;
     alert('Sorteio reiniciado. Pronto para começar de novo!');
 }
+
+DOM.botaoAdicionar.addEventListener('click', adicionarAmigo);
+DOM.botaoSortear.addEventListener('click', sortearAmigo);
+DOM.botaoReiniciar.addEventListener('click', reiniciarSorteio);
