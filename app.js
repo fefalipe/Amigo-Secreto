@@ -19,6 +19,13 @@ function exibirMensagemNaTela() {
     exibirTextoNaTela('h2', 'Digite o nome dos participantes');
 }
 
+function embaralhar(amigos){
+    for (let i = amigos.length - 1; i > 0; i--){
+        const j=Math.floor(Math.random()*(i+1));
+        [amigos[i], amigos[j]]=[amigos[j], amigos[i]];
+    }
+}
+
 exibirMensagemNaTela();
 
 function adicionarAmigo(){
@@ -51,14 +58,19 @@ function atualizarLista(){
 }
 
 function sortearAmigo(){
-    if (amigos.length < 2){
-        alert('Adicione pelo menos 2 nomes de amigos para realizar o sorteio.');
+    if (amigos.length < 3){
+        alert('Adicione pelo menos 3 nomes de amigos para realizar o sorteio.');
         return;
     }
-    const indiceDeSorteio = Math.floor(Math.random() * amigos.length);
-    const amigoSecreto = amigos[indiceDeSorteio];
+    embaralhar(amigos);
     const elementoResultado = DOM.resultado;
-    elementoResultado.innerHTML = `O amigo secreto é: ${amigoSecreto}`;
+    elementoResultado.innerHTML = ``;
+    for (let i=0; i<amigos.length; i++){
+        let indiceAmigoSecreto = (i === amigos.length -1)? 0 : i+1;
+        let parSorteado = document.createElement('p');
+        parSorteado.innerHTML = `${amigos[i]} &rarr; ${amigos[indiceAmigoSecreto]}`;
+        elementoResultado.appendChild(parSorteado);
+    }
     DOM.botaoReiniciar.disabled = false;
 }
 
