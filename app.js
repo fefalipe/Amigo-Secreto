@@ -1,5 +1,12 @@
 let amigos = [];
 
+const DOM = {
+    campoNome: document.getElementById('amigo'),
+    listaAmigos: document.getElementById('listaAmigos'),
+    resultado: document.getElementById('resultado'),
+    botaoReiniciar: document.getElementById('button-reiniciar')
+};
+
 function exibirTextoNaTela(tag, texto) {
     let campo = document.querySelector(tag);
     campo.innerHTML = texto;
@@ -13,7 +20,7 @@ function exibirMensagemNaTela() {
 exibirMensagemNaTela();
 
 function adicionarAmigo(){
-    let campoNome = document.getElementById('amigo');
+    let campoNome = DOM.campoNome;
     let nome = campoNome.value.trim();
     if (nome == ''){
         alert('Por favor, digite o nome de um amigo no campo indicado');
@@ -31,7 +38,7 @@ function adicionarAmigo(){
 }
 
 function atualizarLista(){
-    let listaAmigos = document.getElementById('listaAmigos');
+    let listaAmigos = DOM.listaAmigos;
     listaAmigos.innerHTML = '';
         for( let i = 0; i< amigos.length; i++){
         let amigo = document.createElement('li');
@@ -48,16 +55,16 @@ function sortearAmigo(){
     }
     const indiceDeSorteio = Math.floor(Math.random() * amigos.length);
     const amigoSecreto = amigos[indiceDeSorteio];
-    const elementoResultado = document.getElementById('resultado');
+    const elementoResultado = DOM.resultado;
     elementoResultado.innerHTML = `O amigo secreto é: ${amigoSecreto}`;
-    document.getElementById('button-reiniciar').disabled = false;
+    DOM.botaoReiniciar.disabled = false;
 }
 
 function reiniciar(){
     amigos = [];
-    document.getElementById('listaAmigos').innerHTML = '';
-    document.getElementById('resultado').textContent = '';
-    document.getElementById('amigo').value = '';
-    document.getElementById('button-reiniciar').disabled = true;
+    DOM.listaAmigos.innerHTML = '';
+    DOM.resultado.textContent = '';
+    DOM.campoNome.value = '';
+    DOM.botaoReiniciar.disabled = true;
     alert('Sorteio reiniciado. Pronto para começar de novo!');
 }
